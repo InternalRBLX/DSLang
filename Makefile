@@ -8,11 +8,14 @@ EXEC = stample
 
 all: ${SRC} ${OBJ} ${EXEC}
 
+debug: all
+debug: CFLAGS += -DDEBUG
+
 ${EXEC}: ${OBJ}
 	${CC} ${LDFLAGS} $^ -o $@
 
-%.0: %.c ${HDR}
+%.o: %.c ${HDR}
 	${CC} ${CFLAGS} $< -o $@
 
 clean:
-	rm src/*.o ${EXEC}
+	rm src/*.o ${EXEC} *.dsbc
